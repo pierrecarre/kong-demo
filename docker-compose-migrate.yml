@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  kong-migrate:
+    image: kong:latest
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+    command: kong migrations bootstrap
+    networks:
+      kong-net:
+        aliases:
+          - kong-migrate
